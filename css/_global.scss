@@ -1,0 +1,85 @@
+// start global variables
+$main-color: #ec1d24;
+$text-color: #fff;
+$section-padding: 60px 0;
+$sm-screen: 480px;
+$md-screen: 768px;
+$lg-screen: 1280px;
+$bg-color: #fff;
+$body-color: #000;
+// end global variables
+#icon {
+  cursor: pointer;
+  width: 30px;
+  height: 40px;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  background-color: $main-color;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  z-index: 1000;
+  opacity: 0.8;
+}
+.dark-theme {
+  background-color: #000;
+  color: #fff;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  body {
+    font-family: Roboto, Trebuchet MS, Helvetica, Arial, sans-serif;
+    background-color: $bg-color;
+    color: $body-color;
+  }
+}
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin transition(
+  $property: all,
+  $duration: 0.45s,
+  $ease: cubic-bezier(0.65, 0, 0.076, 1)
+) {
+  transition: $property $duration $ease;
+}
+@for $i from 1 through 2 {
+  .header-#{$i} {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 8%;
+      width: 81px;
+      height: 2px;
+      background-color: #b9b9b9;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -7px;
+      left: 5%;
+      width: 40px;
+      height: 10px;
+      background-color: $main-color;
+      border-radius: 10px;
+      animation: trans 0.7s linear infinite alternate;
+      @keyframes trans {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(70px);
+        }
+      }
+    }
+  }
+}

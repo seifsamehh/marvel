@@ -1,0 +1,903 @@
+@import "_global";
+// start header
+header {
+  background-color: #000;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  @media (min-width: $sm-screen) and (max-width: $md-screen) {
+    padding: 10px;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media only screen and (max-width: $sm-screen) {
+      justify-content: center;
+    }
+    img {
+      width: 15%;
+      height: 70%;
+      object-fit: contain;
+      @media only screen and (max-width: $sm-screen) {
+        width: 40%;
+      }
+    }
+    nav {
+      .first-list {
+        @extend .flex;
+        margin-bottom: 0;
+        @media only screen and (max-width: $sm-screen) {
+          display: none;
+        }
+        li {
+          margin: 0 10px;
+          text-transform: uppercase;
+          font-size: 1.2em;
+          a {
+            color: $text-color;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            &:hover {
+              color: $main-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// end header
+// start landing
+.carousel-item {
+  img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+  .content-1,
+  .content-2,
+  .content-3,
+  .content-4 {
+    background-color: rgba(250, 250, 250, 0.6);
+    color: #000;
+    width: 40%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    border-radius: 20px;
+    border-top: 4px solid $main-color;
+    @media only screen and (max-width: 870px) {
+      width: 78%;
+      height: 63%;
+    }
+    h3 {
+      font-size: 29px;
+      font-weight: 600;
+    }
+    p {
+      margin: 20px 0 30px;
+      letter-spacing: 1px;
+      font-size: 1.2em;
+    }
+    button {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      font-size: inherit;
+      font-family: inherit;
+      &.learn-more {
+        font-weight: 600;
+        color: #000;
+        text-transform: uppercase;
+        padding: 0.5em 1em;
+        background: $text-color;
+        border: 2px solid #000;
+        border-radius: 0.75em;
+        transform-style: preserve-3d;
+        transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+          background 150ms cubic-bezier(0, 0, 0.58, 1);
+        &::before {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: $main-color;
+          border-radius: inherit;
+          box-shadow: 0 0 0 2px $main-color 0 0.625em 0 0 $text-color;
+          transform: translate3d(0, 0.75em, -1em);
+          transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+            box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+        }
+        &:hover {
+          background: $text-color;
+          transform: translate(0, 0.25em);
+          &::before {
+            box-shadow: 0 0 0 2px #000, 0 0.5em 0 0 $text-color;
+            transform: translate3d(0, 0.5em, -1em);
+          }
+        }
+        &:active {
+          background: $text-color;
+          transform: translate(0em, 0.75em);
+          &::before {
+            box-shadow: 0 0 0 2px #000, 0 0 $text-color;
+            transform: translate3d(0, 0, -1em);
+          }
+        }
+      }
+    }
+    .splitting .char {
+      visibility: hidden;
+      &::before,
+      &::after {
+        visibility: visible;
+        --duration: 7s;
+        --delay: 0ms;
+        animation: slide-in var(--duration) cubic-bezier(0.7, 0, 0.1, 1) both
+          infinite;
+        animation-delay: calc(var(--delay) + (100ms * var(--char-index)));
+      }
+      &::before {
+        color: lighten($text-color, 30%);
+      }
+      &::after {
+        animation-name: slide-in-2;
+        color: #000;
+      }
+    }
+    @keyframes slide-in {
+      0% {
+        clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+      }
+      30%,
+      70% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+      95%,
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
+      }
+    }
+    @keyframes slide-in-2 {
+      0%,
+      10% {
+        clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+        // clip-path: polygon(0 0%, 100% 0%, 100% 0%, 0% 0%);
+      }
+      35%,
+      65% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+      85%,
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0% 0);
+      }
+    }
+  }
+  .hvr-bounce-to-bottom {
+    &::before {
+      background: $main-color;
+      border-radius: 20px;
+    }
+  }
+}
+// end landing
+// start about us
+.about-us {
+  padding: $section-padding;
+  .left {
+    p {
+      margin: 20px 0;
+      letter-spacing: 1px;
+      font-size: 1.1em;
+    }
+    button {
+      overflow: visible;
+      border: 0;
+      padding: 0;
+      margin: 1.8rem;
+    }
+    a {
+      text-decoration: none;
+    }
+    .btn.striped-shadow a {
+      display: block;
+      position: relative;
+      z-index: 2;
+      border: 5px solid;
+    }
+    .btn.striped-shadow.blue a {
+      border-color: $main-color;
+      background: $text-color;
+      color: $main-color;
+    }
+    .btn {
+      height: 80px;
+      line-height: 65px;
+      display: inline-block;
+      letter-spacing: 1px;
+      position: relative;
+      font-size: 1.35rem;
+      transition: opacity 0.3s, z-index 0.3s step-end, -webkit-transform 0.3s;
+      transition: opacity 0.3s, z-index 0.3s step-end, transform 0.3s;
+      transition: opacity 0.3s, z-index 0.3s step-end, transform 0.3s,
+        -webkit-transform 0.3s;
+      z-index: 1;
+      background-color: transparent;
+      cursor: pointer;
+    }
+    .btn {
+      width: 155px;
+      height: 48px;
+      line-height: 38px;
+    }
+    button.btn.striped-shadow.blue:after,
+    button.btn.striped-shadow.blue:before {
+      background-image: linear-gradient(
+        135deg,
+        transparent 0,
+        transparent 5px,
+        $main-color 5px,
+        $main-color 10px,
+        transparent 10px
+      );
+    }
+    button.btn.striped-shadow:hover:before {
+      max-height: calc(100% - 10px);
+    }
+    button.btn.striped-shadow:hover:before {
+      max-height: calc(100% - 10px);
+    }
+    button.btn.striped-shadow:after {
+      width: calc(100% - 4px);
+      height: 8px;
+      left: -10px;
+      bottom: -9px;
+      background-size: 15px 8px;
+      background-repeat: repeat-x;
+    }
+    button.btn.striped-shadow:after,
+    button.btn.striped-shadow:before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      transition: max-height 0.3s, width 0.3s, -webkit-transform 0.3s;
+      transition: transform 0.3s, max-height 0.3s, width 0.3s;
+      transition: transform 0.3s, max-height 0.3s, width 0.3s,
+        -webkit-transform 0.3s;
+    }
+    .btn.striped-shadow:hover {
+      -webkit-transform: translate(-12px, 12px);
+      -ms-transform: translate(-12px, 12px);
+      transform: translate(-12px, 12px);
+      z-index: 3;
+    }
+    button.btn.striped-shadow:hover:after,
+    button.btn.striped-shadow:hover:before {
+      -webkit-transform: translate(12px, -12px);
+      -ms-transform: translate(12px, -12px);
+      transform: translate(12px, -12px);
+    }
+    button.btn.striped-shadow:before {
+      width: 8px;
+      max-height: calc(100% - 5px);
+      height: 100%;
+      left: -12px;
+      bottom: -5px;
+      background-size: 8px 15px;
+      background-repeat: repeat-y;
+      background-position: 0 100%;
+    }
+    .headline--ghost {
+      .char {
+        --name: rise;
+        --dur: 3s;
+        --del: calc(var(--distance-percent) * 0.125s);
+        --tf: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform-origin: 50% 100%;
+        &:after {
+          animation: ghost var(--dur) ease-in var(--del) infinite;
+          content: attr(data-char);
+          opacity: 0;
+          transform-origin: 100% 50%;
+          visibility: visible;
+        }
+      }
+      @keyframes rise {
+        40% {
+          transform: translateY(-40%) rotate(calc(var(--distance-sine) * 10deg));
+        }
+        50% {
+          transform: translateY(6%);
+        }
+        55% {
+          transform: translateY(-4%);
+        }
+        60% {
+          transform: translateY(2%);
+        }
+        65% {
+          transform: translateY(-1%);
+        }
+        70% {
+          transform: translateY(0%);
+        }
+      }
+      @keyframes ghost {
+        8% {
+          opacity: 0;
+          transform: translateY(0);
+        }
+        40% {
+          opacity: 0.25;
+          transform: translateY(-30%)
+            rotate(calc(var(--distance-sine) * -10deg));
+        }
+        60%,
+        100% {
+          opacity: 0;
+          transform: translateY(-200%);
+        }
+      }
+    }
+  }
+  .right {
+    img {
+      width: 100%;
+    }
+  }
+}
+// end about us
+// start characters
+.characters {
+  padding: $section-padding;
+  h1 {
+    @extend .flex;
+    margin-bottom: 60px;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      right: 47%;
+      width: 81px;
+      height: 2px;
+      background-color: #b9b9b9;
+      @media screen and (max-width: $md-screen) {
+        right: 41%;
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -16px;
+      left: 47%;
+      width: 40px;
+      height: 10px;
+      background-color: $main-color;
+      border-radius: 10px;
+      animation: trans 0.7s linear infinite alternate;
+      @media screen and (max-width: $md-screen) {
+        left: 38%;
+      }
+      @keyframes trans {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(70px);
+        }
+      }
+    }
+  }
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    @extend .flex;
+    .cap {
+      width: 35%;
+      height: 637px;
+      @media screen and (max-width: $md-screen) {
+        display: none;
+      }
+    }
+  }
+  .captain-america {
+    @extend .flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    @media screen and (max-width: $sm-screen) {
+      padding: 0;
+    }
+    &:hover {
+      background-color: $main-color;
+      color: $text-color;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: -14px;
+      width: 62px;
+      height: 10px;
+      background-color: $main-color;
+      transform: rotate(45deg);
+    }
+    .shield {
+      width: 50%;
+      @media screen and (max-width: $md-screen) {
+        display: none;
+      }
+    }
+    h4 {
+      font-weight: 700;
+      color: #000;
+    }
+    .about-cap {
+      margin-top: 10px;
+      color: #000;
+    }
+    .power {
+      background-color: $main-color;
+      color: $text-color;
+      padding: 10px 15px;
+    }
+  }
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .char {
+    --duration: 0.5s;
+    animation-name: char-transform;
+    animation-duration: calc(var(--duration));
+    animation-fill-mode: both;
+    animation-delay: calc(
+      var(--duration) + 0.05s * (var(--char-total) - var(--char-index))
+    );
+    text-shadow: 0 3vh 4vh rgba(black, 0.03);
+    &:first-child {
+      animation-name: first-char-transform;
+      animation-duration: calc(var(--duration) * 2);
+      animation-delay: 0s;
+    }
+  }
+  @keyframes char-transform {
+    0% {
+      opacity: 0;
+      transform: translateY(50%);
+    }
+    70% {
+      transform: translateY(-6%);
+    }
+    90% {
+      transform: translateY(1%);
+    }
+    to {
+      transform: translateY(0%);
+    }
+  }
+  @keyframes char-rotate {
+    0% {
+      transform: rotate(30deg);
+    }
+    30% {
+      transform: rotate(-10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes first-char-transform {
+    0% {
+      transform: translateX(calc(0.75ch * var(--char-total))) translateY(200%);
+    }
+    40% {
+      transform: translateX(calc(0.75ch * var(--char-total))) translateY(-10%);
+    }
+    60% {
+      transform: translateX(calc(0.75ch * var(--char-total))) translateY(7%);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  @keyframes first-char-rotate {
+    0% {
+      transform: rotate(0.5turn);
+    }
+    40% {
+      transform: rotate(-0.1turn);
+    }
+    70% {
+      transform: rotate(0.1turn);
+    }
+    100% {
+      transform: rotate(0turn);
+    }
+  }
+  .splitting .char {
+    visibility: hidden;
+    &::before {
+      visibility: visible;
+      animation: inherit;
+      animation-name: char-rotate;
+      animation-duration: calc(var(--duration) * 1.1);
+    }
+    &:first-child::before {
+      animation-name: first-char-rotate;
+      animation-duration: inherit;
+    }
+  }
+}
+// end characters
+// start upcoming
+.up-coming {
+  padding: $section-padding;
+  .spread-out .char {
+    transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1);
+    transition-delay: calc(0.2s * var(--distance-percent));
+  }
+  .spread-out:hover .char {
+    transition-delay: calc(0.2s * (1 - var(--distance-percent)));
+    transform: scale(0.6) translateX(calc(1.25em * var(--distance-sine)));
+  }
+  h1 {
+    @extend .flex;
+    margin-bottom: 60px;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      right: 47%;
+      width: 81px;
+      height: 2px;
+      background-color: #b9b9b9;
+      @media screen and (max-width: $sm-screen) {
+        right: 41%;
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -16px;
+      left: 47%;
+      width: 40px;
+      height: 10px;
+      background-color: $main-color;
+      border-radius: 10px;
+      animation: trans 0.7s linear infinite alternate;
+      @media screen and (max-width: $sm-screen) {
+        left: 38%;
+      }
+      @keyframes trans {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(70px);
+        }
+      }
+    }
+  }
+  .box-1,
+  .box-2,
+  .box-3 {
+    @media screen and (max-width: $sm-screen) {
+      margin-bottom: 15px;
+    }
+    .tiler {
+      display: inline-block;
+      cursor: pointer;
+      visibility: hidden;
+      width: 100%;
+      margin: auto;
+    }
+    .tiler img {
+      display: block;
+      margin: auto;
+      max-width: 100%;
+      visibility: visible;
+    }
+    .tiler .cell-grid {
+      background-position: center center;
+      margin: auto;
+      position: fixed;
+      top: 1em;
+      bottom: 1em;
+      left: 1em;
+      right: 1em;
+      z-index: 10;
+      max-width: 1000px;
+      max-height: 600px;
+      perspective: 30px;
+    }
+    .tiler .cell {
+      pointer-events: none;
+      opacity: 0;
+      transform: translateZ(-15px);
+      transform-style: preserve-3d;
+      transition-property: transform, opacity;
+      transition-duration: 0.5s, 0.4s;
+      transition-timing-function: cubic-bezier(0.65, 0.01, 0.15, 1.33);
+      /* The center character index */
+      --center-x: calc((var(--col-total) - 1) / 2);
+      --center-y: calc((var(--row-total) - 1) / 2);
+      /* Offset from center, positive & negative */
+      --offset-x: calc(var(--col-index) - var(--center-x));
+      --offset-y: calc(var(--row-index) - var(--center-y));
+      /* Absolute distance from center, only positive */
+      --distance-x: calc((var(--offset-x) * var(--offset-x)) / var(--center-x));
+      /* Absolute distance from center, only positive */
+      --distance-y: calc((var(--offset-y) * var(--offset-y)) / var(--center-y));
+      transition-delay: calc(
+        0.1s * var(--distance-y) + 0.1s * var(--distance-x)
+      );
+    }
+    .tiler-overlay {
+      z-index: 2;
+    }
+    .tiler:hover {
+      .cell {
+        // pointer-events: auto;
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .css-3d-text {
+      margin-bottom: 10px;
+      font-size: 26px;
+      color: $main-color;
+      text-shadow: 0px 0px 0 rgb(175, -32, 0), -1px 1px 0 rgb(162, -45, 0),
+        -2px 2px 0 rgb(149, -58, 0), -3px 3px 0 rgb(136, -71, 0),
+        -4px 4px 0 rgb(123, -84, 0), -5px 5px 0 rgb(110, -97, 0),
+        -6px 6px 0 rgb(97, -110, 0), -7px 7px 0 rgb(84, -123, 0),
+        -8px 8px 7px rgba(0, 0, 0, 0.4), -8px 8px 1px rgba(0, 0, 0, 0.5),
+        0px 0px 7px rgba(0, 0, 0, 0.2);
+    }
+    button {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      background: transparent;
+      padding: 0;
+      font-size: inherit;
+      font-family: inherit;
+      &.learn-more {
+        width: 12rem;
+        height: auto;
+        .circle {
+          @include transition(all, 0.45s, cubic-bezier(0.65, 0, 0.076, 1));
+          position: relative;
+          display: block;
+          margin: 0;
+          width: 3rem;
+          height: 3rem;
+          background: linear-gradient(45deg, #ec1d24, #000);
+          border-radius: 1.625rem;
+          .icon {
+            @include transition(all, 0.45s, cubic-bezier(0.65, 0, 0.076, 1));
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background: #fff;
+            &.arrow {
+              @include transition(all, 0.45s, cubic-bezier(0.65, 0, 0.076, 1));
+              left: 0.625rem;
+              width: 1.125rem;
+              height: 0.125rem;
+              background: none;
+              &::before {
+                position: absolute;
+                content: "";
+                top: -0.25rem;
+                right: 0.0625rem;
+                width: 0.625rem;
+                height: 0.625rem;
+                border-top: 0.125rem solid #fff;
+                border-right: 0.125rem solid #fff;
+                transform: rotate(45deg);
+              }
+            }
+          }
+        }
+        .button-text {
+          @include transition(all, 0.45s, cubic-bezier(0.65, 0, 0.076, 1));
+          text-decoration: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 0.75rem 0;
+          margin: 0 0 0 1.85rem;
+          color: #000;
+          font-weight: 700;
+          line-height: 1.6;
+          text-align: center;
+          text-transform: uppercase;
+        }
+      }
+      &:hover {
+        .circle {
+          width: 100%;
+          .icon {
+            &.arrow {
+              background: #fff;
+              transform: translate(1rem, 0);
+            }
+          }
+        }
+        .button-text {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+// end upcoming
+// start series
+.series {
+  padding: $section-padding;
+  .spread-out .char {
+    transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1);
+    transition-delay: calc(0.2s * var(--distance-percent));
+  }
+  .spread-out:hover .char {
+    transition-delay: calc(0.2s * (1 - var(--distance-percent)));
+    transform: scale(0.6) translateX(calc(1.25em * var(--distance-sine)));
+  }
+  h1 {
+    @extend .flex;
+    margin-bottom: 60px;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      right: 47%;
+      width: 81px;
+      height: 2px;
+      background-color: #b9b9b9;
+      @media screen and (max-width: $sm-screen) {
+        right: 41%;
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -16px;
+      left: 47%;
+      width: 40px;
+      height: 10px;
+      background-color: $main-color;
+      border-radius: 10px;
+      animation: trans 0.7s linear infinite alternate;
+      @media screen and (max-width: $sm-screen) {
+        left: 38%;
+      }
+      @keyframes trans {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(70px);
+        }
+      }
+    }
+  }
+  .loki,
+  .falcon,
+  .wanda,
+  .haweye {
+    overflow: hidden;
+    img {
+      width: 100%;
+      transition: 0.3s;
+      &:hover {
+        transform: scale(1.3);
+      }
+    }
+    a {
+      text-decoration: none;
+      position: relative;
+      top: -10px;
+      left: 32%;
+      z-index: 3;
+      color: $text-color;
+      font-size: 20px;
+      background-color: $main-color;
+      border-radius: 25px;
+      padding: 10px 25px;
+      @media screen and (max-width: $md-screen) {
+        top: -37px;
+        left: 38%;
+      }
+    }
+  }
+}
+// end series
+// start footer
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px 0;
+  @media screen and (max-width: $md-screen) {
+    flex-direction: column;
+  }
+  p {
+    font-size: 18px;
+    @media screen and (max-width: $md-screen) {
+      margin-bottom: 60px;
+    }
+  }
+  .btn-liquid {
+    display: inline-block;
+    position: relative;
+    width: 240px;
+    height: 60px;
+    border-radius: 27px;
+    color: #fff;
+    font: 700 14px/60px "Droid Sans", sans-serif;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .btn-liquid .inner {
+    position: relative;
+    z-index: 2;
+  }
+  .btn-liquid canvas {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    bottom: -50px;
+    left: -50px;
+    z-index: 1;
+  }
+  .arrow {
+    background-image: url(/images/comics.jpg);
+    background-size: cover;
+    padding: 10px 15px;
+    border-radius: 10px;
+    position: fixed;
+    right: 4%;
+    top: 85%;
+    z-index: 1000;
+    a {
+      color: $text-color;
+    }
+  }
+}
+// end footer
